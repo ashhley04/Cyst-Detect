@@ -5,9 +5,20 @@ from tensorflow import keras
 from keras.preprocessing.image import load_img
 import numpy as np
 from flask_mail import Mail, Message
+from flask_socketio import SocketIO
+from transformers import pipeline
+from flask import Flask, request, jsonify
+from bardapi import Bard  # Import the Bard API
+
+# Initialize the chatbot model
+# chatbot = pipeline('text-generation', model='microsoft/DialoGPT-medium')
+
+
+
 import os
 
 app = Flask(__name__) 
+socketio = SocketIO(app)
 app.secret_key = b'_5#A2L"F4Q8z\n\xec]/'
 
 
@@ -22,14 +33,32 @@ mail = Mail(app)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'fightos' 
+app.config['MYSQL_PASSWORD'] = 'Joey@2512'  # Updated with your password
+app.config['MYSQL_DB'] = 'fightos'
+ 
 
 
 
 model = keras.models.load_model('model.h5')
 
+# # Set your Bard API key
+os.environ['_BARD_API_KEY'] = "g.a000nQj-0NhyUmSFkhzEHrT_EdZc55v3b-FbBAi7fS9m9dc067cdw-DGWAHL98I5eufjF3sVpgACgYKAXgSARcSFQHGX2MigAppDlzlXM-631tppmEWUhoVAUF8yKrrLywA1u6Ck7CnIkxlJUAw0076"
 
+# # Define a chatbot function that interacts with Bard API
+def generate_bard_response(user_input):
+    try:
+        bard = Bard()  # Initialize Bard
+        response = bard.get_answer(user_input)['content']
+        return response
+    except Exception as e:
+        print(f"Error in chatbot: {e}")
+        return "Sorry, something went wrong."
+
+
+chatbot = pipeline('text-generation', model='microsoft/DialoGPT-medium')
+
+# test_response = chatbot("Hello, how are you?", max_length=50, num_return_sequences=1)
+# print(test_response)
 
 
 mysql = MySQL(app)
@@ -178,6 +207,8 @@ def uploadimg():
             return redirect(url_for('portal')) 
     else:
         return redirect(url_for('index'))
+    
+
 
 
 def predictClass(destination_path):
@@ -188,7 +219,7 @@ def predictClass(destination_path):
     img = img / 255.0
     img = img.reshape(1,224,224,3)
     prediction = model.predict(img)
-    l={"detected":prediction[0][0],"not detected":prediction[0][1]}
+    l={"Detected":prediction[0][0],"Not Detected":prediction[0][1]}
     j=prediction.max()
     return get_key(j,l)
 
@@ -200,8 +231,57 @@ def get_key(val,l):
  
     return "Upload a valid ultra sound image"
 
+@app.route('/chat', methods=['POST'])
+def chat():
+    user_input = request.json.get('message')  # Get the message from the request
+    if not user_input:
+        return jsonify({"response": "Please provide a valid message."})
+
+    try:
+        # Generate a response using the chatbot model
+        response = chatbot(user_input, max_length=100, num_return_sequences=1, truncation=True)
+        return jsonify({"response": response[0]['generated_text']})  # Return the response as JSON
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        return jsonify({"response": "Sorry, something went wrong. Please try again."})
+
+
+
+@app.route('/video-call')
+def video_call():
+    return render_template('video_call.html')
+
+# @socketio.on('offer')
+# def handle_offer(offer):
+#     socketio.emit('offer', offer, broadcast=True)
+
+# @socketio.on('answer')
+# def handle_answer(answer):
+#     socketio.emit('answer', answer, broadcast=True)
+
+# @socketio.on('candidate')
+# def handle_candidate(candidate):
+#     socketio.emit('candidate', candidate, broadcast=True)
+
+
+
+
+# @app.route('/chat', methods=['POST'])
+# def chat():
+#     user_input = request.json.get('message')
+#     try:
+#         response = chatbot(user_input, max_length=100, num_return_sequences=1, truncation=True)
+#         return jsonify({"response": response[0]['generated_text']})
+#     except Exception as e:
+#         print(f"Error occurred: {e}")  # Log the error
+#         return jsonify({"response": "Sorry, something went wrong. Please try again."})
+
+
+
  
 
 
-if __name__ == '__main__':
-    app.run(debug = True) 
+# if __name__ == '__main__':
+#     app.run(port=5028)  # Run the app on port 5001
+if __name__ == "__main__":
+    app.run(debug=True, port=8080)

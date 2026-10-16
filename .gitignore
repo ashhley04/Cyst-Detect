@@ -1,0 +1,9 @@
+
+# Dataset files (keep large datasets out of Git)
+dataset/
+dataset - Copy/
+dataset.zip
+data/test/
+
+# Temporary files
+tempCodeRunnerFile.py

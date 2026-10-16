@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Call</title>
+    <style>
+        video {
+            width: 45%;
+            margin: 10px;
+            border: 1px solid black;
+        }
+        #remoteVideo {
+            float: right;
+        }
+    </style>
+
+    <!-- GLightbox CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/glightbox@3.1.6/dist/css/glightbox.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<h2>Doctor-Patient Video Call</h2>
+
+<video id="localVideo" autoplay muted></video>
+<video id="remoteVideo" autoplay></video>
+
+<!-- GLightbox JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/glightbox@3.1.6/dist/js/glightbox.min.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>

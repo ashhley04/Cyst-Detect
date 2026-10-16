@@ -5,19 +5,17 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>FightOS</title>
+  <title>CystDetect</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
   <link href="{{ url_for('static', filename='img/favicon.png') }}" rel="icon">
 
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  
   <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
   <link href="{{ url_for('static', filename='vendor/animate.css/animate.min.css') }}" rel="stylesheet">
   <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -26,6 +24,10 @@
   <link href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
   <link href="{{ url_for('static', filename='vendor/remixicon/remixicon.css') }}" rel="stylesheet">
   <link href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
   <!-- Template Main CSS File -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">  
@@ -37,6 +39,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+
 
 <body>
 
@@ -52,7 +55,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">FightOS</a></h1>
+      <h1 class="logo me-auto"><a href="index.html">CystDetect</a></h1>
       
 
       <nav id="navbar" class="navbar order-last order-lg-0">
@@ -60,12 +63,16 @@
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#Symptomps">Symptoms</a></li>
-          <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
-          
+          <!-- <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li> -->
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="#scanning-centers">Scanning Centers</a></li>
+          <!-- <li class="nav-item">
+            <a class="nav-link scrollto" href="{{ url_for('video_call') }}">Video Call</a>
+          </li> -->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav>
+      <!-- .navbar -->
 
       <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Login</span></a>
 
@@ -84,6 +91,8 @@
       <h2>Your answer is just two clicks away ... </h2>
       <a href="#about" class="btn-get-started scrollto">Get Started</a>
     </div>
+
+    
   </section><!-- End Hero -->
 
   
@@ -95,9 +104,9 @@
       <div class="row">
         <div class="col-lg-4 d-flex align-items-stretch">
           <div class="content">
-            <h3>Why FightOS ?</h3>
+            <h3>Why CystDetect ?</h3>
             <p>
-              Most of the women suffer from ovarian cyst at least once in their lifetime. PCOS can be diagnosed by taking a medical history, ultrasound examination and blood tests. FightOS will detect PCOS based on ultrasound images. You can upload ultrasound images and know whether you have PCOS or not. If PCOS is detected then FightOS will be your helping hand.
+              Most of the women suffer from ovarian cyst at least once in their lifetime. PCOS can be diagnosed by taking a medical history, ultrasound examination and blood tests. CystDetect will detect PCOS based on ultrasound images. You can upload ultrasound images and know whether you have PCOS or not. If PCOS is detected then CystDetect will be your helping hand.
             </p>
           </div>
         </div>
@@ -155,7 +164,7 @@
 
         <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
           <h3>Don't Let PCOS Be Obstracle Of Your Dreams!</h3>
-          <p>In today's world women are working, have future plans and are career oriented but while doing this most of them are facing challeges on all levels and on physical level PCOS is on top. Having PCOS affects woman's not only health but also her performance and confidence. It also bounds her from achieveing her dreams. FightOS acknowledges this problem and brings you a platform to detect PCOS and help you fight it so you can fly high. This problem can be tackeld by just 3 simple steps:  </p>
+          <p>In today's world women are working, have future plans and are career oriented but while doing this most of them are facing challeges on all levels and on physical level PCOS is on top. Having PCOS affects woman's not only health but also her performance and confidence. It also bounds her from achieveing her dreams. CystDetect acknowledges this problem and brings you a platform to detect PCOS and help you fight it so you can fly high. This problem can be tackeld by just 3 simple steps:  </p>
 
           <div class="icon-box">
             <div class="icon"><i class="bx bx-desktop"></i></div>
@@ -166,13 +175,13 @@
           <div class="icon-box">
             <div class="icon"><i class="bx bxs-camera"></i></div>
             <h4 class="title"><a href="">Click and Upload</a></h4>
-            <p class="description">To use FightOS you can click an image of your ultrasound report and upload it in our model.</p>
+            <p class="description">To use CystDetect you can click an image of your ultrasound report and upload it in our model.</p>
           </div>
 
           <div class="icon-box">
             <div class="icon"><i class="bx bxs-report"></i></div>
-            <h4 class="title"><a href="">Generate Report</a></h4>
-            <p class="description">To get analytic result click Generate Report Button and all necessary information will be displayed on your screen.</p>
+            <h4 class="title"><a href="">Generate Result</a></h4>
+            <p class="description">To get analytic result click Generate Result Button and all necessary information will be displayed on your screen.</p>
           </div>
 
         </div>
@@ -404,7 +413,7 @@
 </section><!-- End Departments Section -->
 
 <!-- ======= Doctors Section ======= -->
-<section id="doctors" class="doctors">
+<!-- <section id="doctors" class="doctors">
   <div class="container">
 
     <div class="section-title">
@@ -412,10 +421,10 @@
       <p>We disscussed PCOS condition with few doctors,Vaidyas and from that disscussion we summerized the doctors' opinion on PCOS and way to manage it.</p>
     </div>
 
-    <div class="row">
+    <div class="row"> -->
 
-      <div class="col-lg-6">
-        <br><br><br>
+      <!-- <div class="col-lg-6"> -->
+        <!-- <br><br><br>
         <div class="member d-flex align-items-start">
           <div class="pic"><img src="{{url_for('static', filename='img/doctors/doctor-1.jpg')}}" class="img-fluid" alt=""></div>
           <div class="member-info">
@@ -445,7 +454,7 @@
     </div>
 
   </div>
-</section><!-- End Doctors Section -->
+</section>End Doctors Section -->
 
 <!-- ======= Frequently Asked Questions Section ======= -->
 <section id="faq" class="faq section-bg">
@@ -620,10 +629,10 @@
       </li>
 
       <li data-aos="fade-up" data-aos-delay="1400">
-        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-15" class="collapsed">I do not have utrasound image can FightOS help me in detecting PCOS? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-15" class="collapsed">I do not have utrasound image can CystDetect help me in detecting PCOS? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
         <div id="faq-list-15" class="collapse" data-bs-parent=".faq-list">
           <p>
-            FightOS is a Machine Learning model and it detects PCOS based on your ultrasound image.You can still surf our website but in order to detect PCOS you have to upload ultrasound image.
+            CystDetect is a Machine Learning model and it detects PCOS based on your ultrasound image.You can still surf our website but in order to detect PCOS you have to upload ultrasound image.
           </p>
         </div>
       </li>
@@ -675,7 +684,7 @@
     <br>
     <div class="section-title">
       <h4>Email</h4>
-      <p>healthcaresquad9@gmail.com</p>
+      <p>CystDetect@gmail.com</p>
     </div>
 
     
@@ -684,8 +693,32 @@
   <br><br><br>
 </section><!-- End Contact Section -->
 
+<!-- Map Section -->
+<section id="scanning-centers" class="scanning-centers">
+  <div class="container">
+    <div class="section-title">
+      <h2>Scanning Centers</h2>
+    </div>
+    <div id="map" style="height: 400px;"></div> <!-- This is where your map will be rendered -->
+  </div>
+</section>
+
 </main><!-- End #main -->
 
+<!-- ======= Chatbot Section =======  -->
+<!-- <section id="chatbot" class="d-flex align-items-center">
+  <div class="container">
+    <h2>Chat with FightOS</h2>
+    <div>
+      <input type="text" id="userMessage" placeholder="Ask me anything..." style="width: 80%; padding: 10px;">
+      <button onclick="sendMessage()" style="padding: 10px 20px; margin-left: 10px;">Send</button>
+    </div>
+    <div id="chatbox" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px;">
+      <p><strong>Bot:</strong> Hello! How can I assist you today?</p>
+    </div>
+  </div>
+</section> -->
+<!-- End Chatbot Section -->
 
 
 <div id="preloader"></div>
@@ -700,6 +733,120 @@
 
 <!-- Template Main JS File -->
 <script src="{{url_for('static', filename='js/main.js')}}" ></script>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<script>
+  // Initialize the map and set its view
+  var map = L.map('map').setView([51.505, -0.09], 13);
+
+  // Load and display the map tiles from OpenStreetMap
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Geolocation API to center map and add marker
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var lat = position.coords.latitude;
+      var lon = position.coords.longitude;
+      map.setView([lat, lon], 13);
+
+      // Add a marker for the user's location
+      L.marker([lat, lon]).addTo(map)
+        .bindPopup("You are here.")
+        .openPopup();
+
+      // Function to search for nearby clinics
+      function searchNearbyClinics(lat, lon) {
+        var overpassUrl = "https://overpass-api.de/api/interpreter?data=[out:json];node[amenity=hospital](around:5000," + lat + "," + lon + ");out;";
+fetch(overpassUrl)
+  .then(response => response.json())
+  .then(data => {
+    data.elements.forEach(function (element) {
+      var clinicLat = element.lat;
+  var clinicLon = element.lon;
+  var clinicName = element.tags.name || "Ultrasound Center";
+  var searchUrl = `https://www.google.com/search?q=${encodeURIComponent(clinicName)}`;
+
+      // Add markers for each clinic found
+      L.marker([clinicLat, clinicLon]).addTo(map)
+  .bindPopup(`<a href="${searchUrl}" target="_blank">${clinicName}</a>`);
+
+    });
+  });
+      }
+
+      searchNearbyClinics(lat, lon);
+    });
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+</script>
+
+<!-- JavaScript for Chatbot -->
+<script>
+  async function sendMessage() {
+    const userMessage = document.getElementById('userMessage').value;
+    if (!userMessage) {
+      alert("Please enter a message.");
+      return;
+    }
+
+    const response = await fetch('/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: userMessage }),
+    });
+
+    const data = await response.json();
+    const chatbox = document.getElementById('chatbox');
+
+    // Display the user's message and the bot's response
+    chatbox.innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
+    chatbox.innerHTML += `<p><strong>Bot:</strong> ${data.response}</p>`;
+    document.getElementById('userMessage').value = ''; // Clear input
+  }
+</script>
+
+<!-- <div id="chat-box">
+  <div id="chat-messages"></div>
+  <input type="text" id="user-input" placeholder="Type your message here..." />
+  <button onclick="sendMessage()">Send</button>
+</div> -->
+
+<script>
+  function sendMessage() {
+      const userMessage = document.getElementById('user-input').value;
+      
+      fetch('/chat', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: userMessage }),
+      })
+      .then(response => response.json())
+      .then(data => {
+          const chatMessages = document.getElementById('chat-messages');
+          const userMessageDiv = document.createElement('div');
+          userMessageDiv.textContent = "You: " + userMessage;
+          const botResponseDiv = document.createElement('div');
+          botResponseDiv.textContent = "Bot: " + data.response;
+
+          chatMessages.appendChild(userMessageDiv);
+          chatMessages.appendChild(botResponseDiv);
+
+          document.getElementById('user-input').value = '';  // Clear the input field
+      })
+      .catch(error => console.error('Error:', error));
+  }
+</script>
+
+
 
 </body>
 
