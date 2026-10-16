@@ -1,4 +1,4 @@
-# FightOS
+# Cyst-Detect
 PCOS detection using ultra sound images
 
 ## Problem Statement
@@ -31,7 +31,7 @@ The integration of project is done in python flask.
 -  See website at url: 'localhost:5000'
 
 ## Implementation video
-- https://www.linkedin.com/posts/anagha-choudhari19_project-imageprocessing-deeplearning-activity-6921739280012779520-Vkzr?utm_source=linkedin_share&utm_medium=member_desktop_web
+https://youtu.be/vms3xeauNjc
 
 
  The html template was taken from https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/ for UI
