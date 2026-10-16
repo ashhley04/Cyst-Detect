@@ -30,6 +30,11 @@ The project uses a **Convolutional Neural Network (CNN)** to classify ovarian ul
 - [🔗 References](#-references)
 
 ---
+## 🎥 Project Demo
+
+Watch Cyst-Detct in action and explore how AI can help make video content accessible across different Indian regional languages.
+
+**▶️ [Click here to watch the Cyst-Detect Demo][(https://youtu.be/vms3xeauNjc)**
 
 ## 🎯 Problem Statement
 
